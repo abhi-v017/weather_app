@@ -27,9 +27,28 @@ function App() {
   const handleSearch = () => {
     checkWeather();
   };
-
-
-
+  const getWeatherIcon = (weatherCondition) => {
+    switch (weatherCondition) {
+      case 'Clear':
+        return 'clear.svg';
+      case 'Clouds':
+        return 'cloudy.svg';
+      case 'Rain':
+        return 'rain.svg';
+      case 'Snow':
+        return 'snow.svg';
+      case 'Drizzel':
+        return 'drizzel.svg';
+      case 'Mist':
+        return 'mist.svg';
+      case 'Fog':
+        return 'fog.svg';
+      case 'Haze':
+        return 'haze.svg';
+      case 'Smoke':
+        return 'smoke.svg';
+    };
+  }
   return (
     <>
       <div className='bg1 flex justify-center items-center h-screen w-full'>
@@ -43,18 +62,18 @@ function App() {
             </lord-icon></button>
           </div>
           <div className='m-1 '>
-            <img className='mt-6 dropShadow h-32 w-32 mx-auto ' src={`img/${weatherData.weather[0].main.toLowerCase()}.svg`} alt="" />
+            <img className='mt-6 dropShadow h-32 w-32 mx-auto ' src={`src/assets/${weatherData.weather ? getWeatherIcon(weatherData.weather[0].main) : 'begin.svg'}`} alt="" />
             <h2 className="city text-white text-5xl textshadow max-sm:text-3xl">{weatherData.name || ''}</h2>
             <h1 className="temp text-white m-3 text-4xl textshadow max-sm:text-2xl">{weatherData.main ? `${weatherData.main.temp}°c` : ''}</h1>
             <h1 className="condition text-white m-3 text-4xl textshadow max-sm:text-2xl">{weatherData.weather ? weatherData.weather[0].main : ''}</h1>
           </div>
           <div className="details flex justify-between items-center">
-            <div className='sm:flex'>
+            <div className='sm:flex items-center'>
               <div>
                 <img className='h-14 w-14 mx-1 my-2' src="src/assets/thermometer.svg" alt="" />
               </div>
               <div>
-                <p className="humidity text-white text-lg textshadowmax-sm:text-lg">{weatherData.main ? `${weatherData.main.humidity}%` : ''}</p>
+                <p className="humidity text-white text-lg textshadow max-sm:text-lg">{weatherData.main ? `${weatherData.main.humidity}%` : ''}</p>
                 <p className='text-white text-xl textshadow max-sm:text-lg'>Humidity</p>
               </div>
             </div>
